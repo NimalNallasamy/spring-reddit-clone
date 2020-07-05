@@ -41,11 +41,12 @@ This project is all about building the reddit cloned application.
    2. Inside the AuthService class we retrieve the username and password and construct UserNamePasswordAuthenticationToken class, pass this to Authentication Manager class.
    3. AuthenticationManager class makes use of the UserDetails service which tries to retrieve the UserDetails from the DB, and throws an Exception if not found.
    4. On successful fetch of UserDetails, AuthenticationManager would provide Authentication details to AuthService, which in turn creates a JWT and provides the client.  
-    
+   5. When the user is provided with the JWT token, they use it authorises the request like : Authorization : Bearer Jwt Token
+   6. We do have a intermediate filter JWT filter. Which takes the JWT token from the header. And tries to authorize the request. If success, forwards to respective controller.
+
 #Use Case of this project :
 This project is similar to reddit. Below we mention the use case of this project.
 1. User signs up an account in our reddit-clone.
 2. Once user signs up, the user must be receiving a mail to verify themselves.
 3. Once the user verifies themselves, backend entry should be maintained for the same.
 4. Once the user logs in, they must be authenticated usign JWT tokens. 
-5. 

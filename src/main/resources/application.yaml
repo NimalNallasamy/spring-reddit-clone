@@ -1,0 +1,33 @@
+server:
+  port: 8080
+#logging:
+#  level:
+#    org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl: ERROR
+spring:
+  application:
+    name: spring-reddit-clone
+
+  hikari:
+    connectionTimeout: 20000
+    maximumPoolSize: 5
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driverclassname: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  ### Mail Properties for Project ###
+  mail:
+    host: smtp.mailtrap.io
+    port: 25
+    username: 1aca1af6c956ff
+    password: 9e671892371dc4
+    protocol: smtp

@@ -56,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/api/subReddit")
                 .permitAll()
+                .antMatchers("/api/subReddit/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated();
 //        .and().exceptionHandling().accessDeniedPage("/errorPage");

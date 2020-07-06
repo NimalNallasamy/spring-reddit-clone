@@ -12,4 +12,6 @@ public interface SubredditRepository extends JpaRepository<SubReddit, Long> {
 
     Optional<SubReddit> findByName(String subRedditName);
 
+    Optional<SubReddit> findById(Long id);
+
 }

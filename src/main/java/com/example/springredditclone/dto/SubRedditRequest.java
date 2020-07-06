@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class SubRedditRequest {
 
     private Long id;
-    private String subRedditName;
+    private String name;
     private String description;
     private Integer numberOfPosts;
 

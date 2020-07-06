@@ -10,6 +10,7 @@ This project is all about building the reddit cloned application.
 2. Angular for the frontend. 
 3. PostgresQL as the DB.
 4. MailTrap - Fake SMTP server to send mail.
+5. MapStruct - Java library which generates the mapping code.
 
 #Steps followed in building this project :
 1. On the first step, we will need to check if all the mentioned technologies are available in our development setup.
@@ -44,9 +45,15 @@ This project is all about building the reddit cloned application.
    5. When the user is provided with the JWT token, they use it authorises the request like : Authorization : Bearer Jwt Token
    6. We do have a intermediate filter JWT filter. Which takes the JWT token from the header. And tries to authorize the request. If success, forwards to respective controller.
 
+#MapStruct
+
+   1. MapStruct is a Java Library that is used for generating the mapping code and sharing the data between 2 objects. 
+   2. Url for mapstruct - https://mapstruct.org/
+
 #Use Case of this project :
 This project is similar to reddit. Below we mention the use case of this project.
 1. User signs up an account in our reddit-clone.
 2. Once user signs up, the user must be receiving a mail to verify themselves.
 3. Once the user verifies themselves, backend entry should be maintained for the same.
 4. Once the user logs in, they must be authenticated usign JWT tokens. 
+

@@ -11,6 +11,7 @@ This project is all about building the reddit cloned application.
 3. PostgresQL as the DB.
 4. MailTrap - Fake SMTP server to send mail.
 5. MapStruct - Java library which generates the mapping code.
+6. Time ago - a Kotlin Library to calculate the time difference. 
 
 #Steps followed in building this project :
 1. On the first step, we will need to check if all the mentioned technologies are available in our development setup.
@@ -28,7 +29,9 @@ This project is all about building the reddit cloned application.
     1. For that we get the user name and password from mail trap page and configure it on our application.yaml file.
     2. Then we make use of MimeMessagePreparator and MimemessageHelper to construct the mail.
     3. We use JavaMailSender to send the mail, which contains the Auth URL, which is used to verify the account.
-    
+8. Construct the Controller, Services, DTO, Mapper(if needed), for SubReddit, Post, Comment and Vote.
+9. To calculate the duration, we make use of the Time ago, a Kotlin library. 
+   
 #User authentication using JWT a brief explanation :
    ##HighLevel Overview
    1. First the client issues a login request with their credentials.
@@ -49,6 +52,10 @@ This project is all about building the reddit cloned application.
 
    1. MapStruct is a Java Library that is used for generating the mapping code and sharing the data between 2 objects. 
    2. Url for mapstruct - https://mapstruct.org/
+   
+#Time Ago
+   1. Its a kotlin library to calculate the time duration between 2 times.
+   2. Url : https://github.com/marlonlom/timeago
 
 #Use Case of this project :
 This project is similar to reddit. Below we mention the use case of this project.

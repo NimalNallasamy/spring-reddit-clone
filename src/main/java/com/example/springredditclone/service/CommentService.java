@@ -62,6 +62,7 @@ public class CommentService {
         ));
     }
 
+    @Transactional(readOnly = true)
     public List<CommentResponse> getCommentsByPostId(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new SpringRedditException("No Post found for the given postId"));
@@ -73,6 +74,7 @@ public class CommentService {
 
     }
 
+    @Transactional(readOnly = true)
     public List<CommentResponse> getCommentsByUserName(String userName) {
         RedditUser redditUser = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new SpringRedditException("No user found for the given username"));

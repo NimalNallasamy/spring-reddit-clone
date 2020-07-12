@@ -1,6 +1,7 @@
 package com.example.springredditclone.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -17,7 +18,7 @@ public class MailContentBuilder {
     public String build(String message) {
         Context context = new Context();
         context.setVariable("message", message);
-        return templateEngine.process("templates/SignUpTemplate.html", context);
+        return templateEngine.process(new ClassPathResource("SignUpTemplate").getPath(), context);
     }
 
 }

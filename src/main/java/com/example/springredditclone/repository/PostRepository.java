@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByRedditUser(RedditUser redditUser);
 
+    Post findByPostName(String postName);
+
 }

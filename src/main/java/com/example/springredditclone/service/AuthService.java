@@ -2,6 +2,7 @@ package com.example.springredditclone.service;
 
 import com.example.springredditclone.dto.AuthenticationResponse;
 import com.example.springredditclone.dto.LoginRequest;
+import com.example.springredditclone.dto.RefreshTokenRequest;
 import com.example.springredditclone.dto.RegisterRequest;
 import com.example.springredditclone.entity.NotificationEmail;
 import com.example.springredditclone.entity.RedditUser;
@@ -43,6 +44,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final VerificationTokenRepository verificationTokenRepository;
     private final MailService mailService;
+    private final RefreshTokenService refreshTokenService;
     /**
      * Since the Authentication Manager is an interface, we need to specify the bean that which implementation should be autowired.
      * Else Spring would throw an error.
@@ -136,7 +138,13 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwtToken = jwtProvider.generateToken(authentication);
-        return new AuthenticationResponse(loginRequest.getUserName(), jwtToken);
+//        return new AuthenticationResponse(loginRequest.getUserName(), jwtToken);
+        return  AuthenticationResponse.builder()
+                .authenticationToken(jwtToken)
+                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getExpirationTimeInMillis()))
+                .userName(loginRequest.getUserName())
+                .build();
     }
 
 
@@ -148,5 +156,19 @@ public class AuthService {
 //        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findByUserName((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal())
                 .orElseThrow(() -> new SpringRedditException("User with the given username not present. "));
+    }
+
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+
+        // Validation of token, of not valid, there will be a run time exception. If nothing, the execution moves to next step.
+        refreshTokenService.validateRefreshToken(refreshTokenRequest.getRefreshToken());
+
+        String jwtToken = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUserName());
+        return AuthenticationResponse.builder()
+                .authenticationToken(jwtToken)
+                .refreshToken(refreshTokenRequest.getRefreshToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getExpirationTimeInMillis()))
+                .userName(refreshTokenRequest.getUserName())
+                .build();
     }
 }

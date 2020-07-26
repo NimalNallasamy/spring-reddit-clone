@@ -31,3 +31,8 @@ spring:
     username: 1aca1af6c956ff
     password: 9e671892371dc4
     protocol: smtp
+
+### JWT Properties for the Project ###
+jwt:
+  expiration:
+    time: 900000

@@ -1,8 +1,10 @@
 package com.example.springredditclone.security;
 
+import com.example.springredditclone.entity.RedditUser;
 import com.example.springredditclone.exception.SpringRedditException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
+import java.sql.Date;
+import java.time.Instant;
+
+import static java.util.Date.from;
 
 @Service
 public class JwtProvider {
 
     private KeyStore keyStore;
+    @Value("${jwt.expiration.time}")
+    private Long expirationTimeInMillis;
 
     @PostConstruct
     public void init(){
@@ -35,8 +43,19 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .signWith(getPrivateKey())
+                .setExpiration(from(Instant.now().plusMillis(expirationTimeInMillis)))
                 .compact();
 
+    }
+
+    // If we invalidate the token, then there would not be any user in the security context, so we generated one with UserName
+    public String generateTokenWithUserName(String userName){
+        return Jwts.builder()
+                .setSubject(userName)
+                .setIssuedAt(from(Instant.now()))
+                .signWith(getPrivateKey())
+                .setExpiration(from(Instant.now().plusMillis(expirationTimeInMillis)))
+                .compact();
     }
 
     private PrivateKey getPrivateKey(){
@@ -70,4 +89,7 @@ public class JwtProvider {
         return claims.getSubject();
     }
 
+    public Long getExpirationTimeInMillis() {
+        return expirationTimeInMillis;
+    }
 }

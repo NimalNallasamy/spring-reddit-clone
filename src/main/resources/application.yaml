@@ -27,9 +27,9 @@ spring:
   ### Mail Properties for Project ###
   mail:
     host: smtp.mailtrap.io
-    port: 25
-    username: 1aca1af6c956ff
-    password: 9e671892371dc4
+    port: 2525
+    username: 17f3804a5fd880
+    password: a0d377bb9fd017
     protocol: smtp
 
 ### JWT Properties for the Project ###

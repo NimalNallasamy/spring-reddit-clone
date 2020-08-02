@@ -11,7 +11,8 @@ This project is all about building the reddit cloned application.
 3. PostgresQL as the DB.
 4. MailTrap - Fake SMTP server to send mail.
 5. MapStruct - Java library which generates the mapping code.
-6. Time ago - a Kotlin Library to calculate the time difference. 
+6. Time ago - a Kotlin Library to calculate the time difference.
+7. Swagger and SpringFox - To document the Rest APIs we have built.
 
 #Steps followed in building this project :
 1. On the first step, we will need to check if all the mentioned technologies are available in our development setup.
@@ -59,8 +60,14 @@ This project is all about building the reddit cloned application.
    2. Url for mapstruct - https://mapstruct.org/
    
 #Time Ago
-   1. Its a kotlin library to calculate the time duration between 2 times.
-   2. Url : https://github.com/marlonlom/timeago
+   1. It's a kotlin library to calculate the time duration between 2 times.
+   2. Documentation Url : https://github.com/marlonlom/timeago
+
+#SpringFox & Swagger
+   1. The Springfox suite of java libraries are all about automating the generation of machine and human readable specifications for JSON APIs written using the spring family of projects.
+   2. Documentation Url : https://springfox.github.io/springfox/docs/current/#introduction
+   3. Docket stands for  - **A summary or other brief statement of the contents of a document; an abstract.**
+   4. Documentation Url of APIs when server started up - http://localhost:8080/swagger-ui.html#/
 
 #Use Case of this project :
 This project is similar to reddit. Below we mention the use case of this project.

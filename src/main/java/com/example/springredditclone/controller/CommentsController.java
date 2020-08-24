@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comments/")
+@RequestMapping("/api/comments")
 @AllArgsConstructor
 public class CommentsController {
 
@@ -23,12 +23,12 @@ public class CommentsController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("post/{postId}")
+    @GetMapping("/post/{postId}")
     public ResponseEntity<List<CommentResponse>> getCommentByPostId(@PathVariable Long postId){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.getCommentsByPostId(postId));
     }
 
-    @GetMapping("user/{userName}")
+    @GetMapping("/user/{userName}")
     public ResponseEntity<List<CommentResponse>> getCommentsByUserName(@PathVariable String userName){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.getCommentsByUserName(userName));
     }

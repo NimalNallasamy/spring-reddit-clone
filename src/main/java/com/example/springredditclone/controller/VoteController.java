@@ -11,7 +11,7 @@ import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/votes/")
+@RequestMapping("/api/votes")
 @AllArgsConstructor
 public class VoteController {
 
